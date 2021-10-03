@@ -1,9 +1,6 @@
 #!/bin/bash
 cd /tmp/rom
 
-
-sudo ln -snf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
-
 #tg
 tg(){
 	bot_api=$bot_token
