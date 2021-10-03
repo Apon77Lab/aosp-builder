@@ -1,10 +1,6 @@
 env: 
     CIRRUS_CLONE_DEPTH: 1
-    CIRRUS_WORKING_DIR: "/tmp/project" 
-
-    rc_conf: "ENCRYPTED[0b99868e2c704855a05ceef469296a2a77ab10a6597e8fa403fa2137ea928d5585bdfaf4405618ecb267cda0aa39e787]"
-    bot_token: "1358441517:AAG0GL__2I7s83hXDMtXaeUaQartZEl5xnc"
-    
+    CIRRUS_WORKING_DIR: "/tmp/project"    
 task:
     name: 10orE_images 
     timeout_in: 120m
@@ -12,7 +8,7 @@ task:
       image: ghcr.io/popoasm/popo_docker:main
       cpu: 8 
       memory: 32G
-    ccache_script: 
-     - ./ccache 
     build_script: 
+     - sudo apt install tmate -y
      - ./build
+     
