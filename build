@@ -42,7 +42,7 @@ tg $id "✳️holland1 compile status: started✳️"
 #make api-stubs-docs || echo no problem
 #make system-api-stubs-docs || echo no problem
 #make test-api-stubs-docs || echo no problem
-make bacon -j8
+m aex -j8
 
 #uploads
 #up(){
