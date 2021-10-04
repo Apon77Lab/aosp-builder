@@ -5,9 +5,6 @@ cd /tmp/rom
 git config --global  user.name "popoASM"
 git config --global  user.email "pratyayaborborah@gmail.com"
 
-# Fix TimeZone
-sudo ln -snf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
-
 #tg
 tg(){
 	bot_api=$bot_token
