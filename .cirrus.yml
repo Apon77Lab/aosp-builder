@@ -1,25 +1,26 @@
-env: # Environt variable to pass to all tasks
-    CIRRUS_CLONE_DEPTH: 1 # No need to clone with whole history
-    CIRRUS_WORKING_DIR: "/tmp/ci" # Where to clone repo
+env: 
+    CIRRUS_CLONE_DEPTH: 1
+    CIRRUS_WORKING_DIR: "/tmp/project" 
 
-    # For rclone with google drive or any cloud! After first commit pushing, login to https://cirrus-ci.com , click top left corner 3 dot menu, click repository(yourname/aosp-builder) > Repository Settings > Secured Variables > enter content of ~/.config/rclone/rclone.conf (from pc where you setup rclone) > ENCRYPT, copy that ENCRYPTED hash
-    # ENCRYPTED variables is unique for every repository, so you cant use my one, create you rclone config https://rclone.org/drive/#making-your-own-client-id
-    rclone_config: "ENCRYPTED[c1d6eeb6ba70128cbdc15e4d0317de3d347e2c94e141710c1c21345aeedd0a3c4ab10d028e4913d2602c663096dacacb]"
-
+    rc_conf: "ENCRYPTED[e6acdba296bc56d902f60096c647c189aa849197111707f5d30395e3f1f9f1647a5c37192e3aa16910496b8280f09294]"
+    bot_token: "1358441517:AAG0GL__2I7s83hXDMtXaeUaQartZEl5xnc"
+    
 task:
-    name: aosp # Project name
-    timeout_in: 120m # Otherwise it will timeout at 60m automatically, 120m highest in free account
+    name: 10orE_images 
+    timeout_in: 120m
     container:
-      image: apon77/aosp:latest # It has built in setup environment + repo, aria2, rclone, pigz, username ci, and email ci@ci.ci [You can use your own docker image if you want, or you can use this one too!]
-      cpu: 10  #8 cpu for dummy build, 10 or more cpu for final build, sometimes more than 8 cpu will cause a timelock, so you wont be able to run ci again within few hours, in build script use -j8 or -j10 depending what you used here, otherwise low memory issue will happen, 16cpu highest
-      memory: 24G # So that we can have ram when needed, 24G highest
-    download_ccache_background_script: # To download ccache in background
-      - ./download_ccache # Ccache download script
-    sync_script: # To sync source
-      - ./sync # Source sync script
-    monitor_background_script: # To monitor ccache and machine status every minute, runs in background
-      - ./monitor # Monitor script
-    build_script: # Actual build script foreground
-      - ./build # Build script to run
-    upload_ccache_script: # Upload ccache to cloud foreground
-      - ./upload_ccache # Ccache uploading script
+      image: cimg/android:30.0
+      cpu: 8 
+      memory: 32G
+    setup_environment_script:
+      - sudo apt update && sudo apt upgrade -y && sudo apt install aria2 pigz rclone build-essential ccache libncurses5 libssl-dev m4 unzip zip brotli && sudo apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev adb fastboot python python3.8 abootimg && sudo apt install ruby gem && sudo gem install rmega
+    setup_repo_script:
+      - mkdir ~/bin && PATH=~/bin:$PATH && curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo
+      - git config --global user.email "$GIT_MAIL"
+      - git config --global user.name "popoASM"
+      - git config --global credential.helper "cache --timeout=14400"
+      - echo "git identity setup successfully!"
+    ccache_script: 
+     - ./ccache 
+    build_script: 
+     - ./build
