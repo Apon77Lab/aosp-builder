@@ -9,11 +9,9 @@ task:
     name: 10orE_images 
     timeout_in: 120m
     container:
-      image: cimg/android:30.0
-      cpu: 7
-      memory: 28G
-    setup_environment_script:
-      - sudo apt update && sudo apt upgrade -y && sudo apt install aria2 pigz rclone build-essential ccache libncurses5 libssl-dev m4 unzip zip brotli && sudo apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev adb fastboot python python3.8 abootimg && sudo apt install ruby gem && sudo gem install rmega
+      image: ghcr.io/popoasm/droid_docker:main
+      cpu: 8
+      memory: 32G
     setup_repo_script:
       - mkdir ~/bin && PATH=~/bin:$PATH && curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo
       - git config --global user.email "$GIT_MAIL"
