@@ -29,7 +29,7 @@ repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync 
 
 # Normal build steps
 source build/envsetup.sh
-lunch lineage_holland1-userdebug
+lunch lineage_E-userdebug
 export CCACHE_DIR=/tmp/ccache
 export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
