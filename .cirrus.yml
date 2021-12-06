@@ -2,7 +2,7 @@ env:
     CIRRUS_CLONE_DEPTH: 1
     CIRRUS_WORKING_DIR: "/tmp/project" 
 
-    RF: "[brrbrr] type = drive client_id = 22899580003-uql569pa8ntajqlo7838fjm507rtf13j.apps.googleusercontent.com client_secret = 09sJn1wNwDYFcI0_bdrldY1z scope = drive root_folder_id = token = {"access_token":"ya29.a0ARrdaM92JbCnUtK7Cp9gYOKM3_LtrtFLoe_sT1kONZqrbzkguLmkTadLpfLN8cSse1C7Qk7k7Qo7FPa5yexl80-ADWjhanCRprq-FeV_dp8DN4kxPP5CISuZzRtvBWpc9tj9HVxbQjrqlVufb9GLLUfjuYbV3LA","token_type":"Bearer","refresh_token":"1//0gy8hYfV_19LtCgYIARAAGBASNwF-L9IruWd-wxDJaUQZOVkf5gzipq_TxhV76Ob0q1aNwa3O6H6v5kDYAFTyxcUyinhkq6Vsxg8","expiry":"2021-09-10T09:31:56.201545366+05:30"} team_drive = 0ALV9IXqMLk7QUk9PVA"
+    RF: ""
     BT: ""
     
 task:
